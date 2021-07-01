@@ -33,6 +33,11 @@ class MyHomePage extends StatelessWidget {
     final UserGetController userGetController =
         Get.put(UserGetController(_pagingController));
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          userGetController.addUsers();
+        },
+      ),
       appBar: AppBar(),
       body: GetBuilder<UserGetController>(builder: (controller) {
         // if (controller.isLoading)
@@ -43,7 +48,7 @@ class MyHomePage extends StatelessWidget {
         //   return Center(
         //     child: Text("error"),
         //   );
-        // else {
+        // else
         return RefreshIndicator(
           onRefresh: () => controller.getUsersPage(0),
           child: PagedListView<int, User>(
